@@ -12,7 +12,7 @@ class XlsxReaderTest extends FlatSpec with Matchers {
 
     val path = Path.of(ClassLoader.getSystemResource("test1.xlsx").toURI)
 
-    val cellDetails = xlsxReader.getCellDetails(path)
+    val cellDetails = xlsxReader.readCellDetails(path)
 
     cellDetails.size shouldBe 12
   }

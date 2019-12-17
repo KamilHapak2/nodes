@@ -14,7 +14,7 @@ class NodeMapperTest extends FlatSpec with Matchers {
 
     // todo zamienić te dwie linie na listę NodeDetails
     val path = Path.of(ClassLoader.getSystemResource("test1.xlsx").toURI)
-    val cellDetails = xlsxReader.getCellDetails(path)
+    val cellDetails = xlsxReader.readCellDetails(path)
 
     val nodesFromLevel0 = nodeMapper.findNodesFromLevel(cellDetails, 0)
 
@@ -25,7 +25,7 @@ class NodeMapperTest extends FlatSpec with Matchers {
 
     // todo zamienić te dwie linie na listę NodeDetails
     val path = Path.of(ClassLoader.getSystemResource("test1.xlsx").toURI)
-    val cellDetails = xlsxReader.getCellDetails(path)
+    val cellDetails = xlsxReader.readCellDetails(path)
 
     val nodesFromLevel0 = nodeMapper.findNodesFromLevel(cellDetails, 1)
 
@@ -36,7 +36,7 @@ class NodeMapperTest extends FlatSpec with Matchers {
 
     // todo zamienić te dwie linie na listę NodeDetails
     val path = Path.of(ClassLoader.getSystemResource("test1.xlsx").toURI)
-    val cellDetails = xlsxReader.getCellDetails(path)
+    val cellDetails = xlsxReader.readCellDetails(path)
 
     val nodesFromLevel0 = nodeMapper.findNodesFromLevel(cellDetails, 2)
 
@@ -47,7 +47,7 @@ class NodeMapperTest extends FlatSpec with Matchers {
 
     // todo zamienić te dwie linie na listę NodeDetails
     val path = Path.of(ClassLoader.getSystemResource("test1.xlsx").toURI)
-    val cellDetails = xlsxReader.getCellDetails(path)
+    val cellDetails = xlsxReader.readCellDetails(path)
 
     val descendants = nodeMapper.findNodeDescendants(cellDetails.head, cellDetails)
 
@@ -58,7 +58,7 @@ class NodeMapperTest extends FlatSpec with Matchers {
 
     // todo zamienić te dwie linie na listę NodeDetails
     val path = Path.of(ClassLoader.getSystemResource("test1.xlsx").toURI)
-    val cellDetails = xlsxReader.getCellDetails(path)
+    val cellDetails = xlsxReader.readCellDetails(path)
 
     val descendants = nodeMapper.findNodeDescendants(cellDetails(10), cellDetails)
 
@@ -69,7 +69,7 @@ class NodeMapperTest extends FlatSpec with Matchers {
 
     // todo zamienić te dwie linie na listę NodeDetails
     val path = Path.of(ClassLoader.getSystemResource("test1.xlsx").toURI)
-    val cellDetails = xlsxReader.getCellDetails(path)
+    val cellDetails = xlsxReader.readCellDetails(path)
 
     val children = nodeMapper.findChildren(cellDetails(5), cellDetails)
 
@@ -80,7 +80,7 @@ class NodeMapperTest extends FlatSpec with Matchers {
 
     // todo zamienić te dwie linie na listę NodeDetails
     val path = Path.of(ClassLoader.getSystemResource("test1.xlsx").toURI)
-    val cellDetails = xlsxReader.getCellDetails(path)
+    val cellDetails = xlsxReader.readCellDetails(path)
 
     val mappedNodes = nodeMapper.mapNodes(cellDetails)
 

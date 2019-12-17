@@ -8,7 +8,7 @@ class NodeMapper {
     assignChildren(nodesFromRootLevel, nodes, 0)
   }
 
-  // todo zamienic na private jak już będzie można usunąć testy
+  // todo zamienic resztę na private jak już będzie można zostawic tylko testy do mapNodes
   def findNodesFromLevel(nodes: List[NodeDetails], level: Int): List[NodeDetails] = nodes.filter(node => node.level == level)
 
   def findNodeDescendants(parent: NodeDetails, allNodes: List[NodeDetails]): List[NodeDetails] = {
@@ -26,10 +26,9 @@ class NodeMapper {
     descendants.filter(node => node.level == parent.level + 1)
   }
 
-  def assignChildren(parents: List[NodeDetails], allNodes: List[NodeDetails], lv: Int): List[Node] = {
+  private def assignChildren(parents: List[NodeDetails], allNodes: List[NodeDetails], lv: Int): List[Node] = {
     parents
       .map(parent => Node(parent.node.id, parent.node.name,
         assignChildren(findChildren(parent, allNodes), allNodes, lv + 1)))
   }
-
 }
