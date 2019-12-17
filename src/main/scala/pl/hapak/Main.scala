@@ -2,6 +2,7 @@ package pl.hapak
 
 import java.nio.file.Path
 
+import net.liftweb.json.{DefaultFormats, Serialization}
 
 object Main {
 
@@ -9,11 +10,10 @@ object Main {
 
     val reader = new XlsxReader
     val cells = reader.readCellDetails(Path.of(args.head))
-
     val mapper = new NodeMapper
-
     val nodes = mapper.mapNodes(cells)
 
-    nodes.foreach(node => node.print()) // todo print as JSON
+    implicit val formats: DefaultFormats.type = DefaultFormats
+    println(Serialization.writePretty(nodes))
   }
 }
