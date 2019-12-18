@@ -8,6 +8,8 @@ import scala.jdk.CollectionConverters._
 
 class XlsxReader {
 
+  private val headerFirstCellText = "Poziom 1"
+
   def readCellDetails(path: Path): List[NodeDetails] = {
 
     if (Files.notExists(path)) {
@@ -41,6 +43,6 @@ class XlsxReader {
       case null => ""
       case cell => cell.getStringCellValue
     }
-    !value.equals("Poziom 1")
+    !value.equals(headerFirstCellText)
   }
 }

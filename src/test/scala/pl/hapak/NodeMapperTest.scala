@@ -5,7 +5,7 @@ import org.scalatest.{FlatSpec, Matchers}
 // todo parametrized test
 class NodeMapperTest extends FlatSpec with Matchers {
 
- private val nodeMapper: NodeMapper = new NodeMapper
+  private val nodeMapper: NodeMapper = new NodeMapper
 
   "NodeMapper" should "find children for all nodes" in {
 
@@ -26,14 +26,14 @@ class NodeMapperTest extends FlatSpec with Matchers {
 
     val mappedNodes = nodeMapper.mapNodes(cellDetails)
 
-    mappedNodes.size shouldBe 4
-    mappedNodes.head.nodes.size shouldBe 2
-    mappedNodes.head.nodes.head.nodes.size shouldBe 2
-    mappedNodes.head.nodes(1).nodes.size shouldBe 0
-    mappedNodes(1).nodes.size shouldBe 0
-    mappedNodes(2).nodes.size shouldBe 1
-    mappedNodes(2).nodes.head.nodes.size shouldBe 2
-    mappedNodes(3).nodes.size shouldBe 1
+    mappedNodes should have size 4
+    mappedNodes.head.nodes should have size 2
+    mappedNodes.head.nodes.head.nodes should have size 2
+    mappedNodes.head.nodes(1).nodes should have size 0
+    mappedNodes(1).nodes should have size 0
+    mappedNodes(2).nodes should have size 1
+    mappedNodes(2).nodes.head.nodes should have size 2
+    mappedNodes(3).nodes should have size 1
   }
 
   "NodeMapper" should "find children for all nodes 2" in {
@@ -60,17 +60,17 @@ class NodeMapperTest extends FlatSpec with Matchers {
 
     val mappedNodes = nodeMapper.mapNodes(cellDetails)
 
-    mappedNodes.size shouldBe 4
-    mappedNodes.head.nodes.size shouldBe 3
-    mappedNodes.head.nodes.head.nodes.size shouldBe 0
-    mappedNodes.head.nodes(1).nodes.size shouldBe 2
-    mappedNodes.head.nodes(2).nodes.size shouldBe 0
-    mappedNodes(1).nodes.size shouldBe 3
-    mappedNodes(2).nodes.size shouldBe 2
-    mappedNodes(2).nodes.head.nodes.size shouldBe 2
-    mappedNodes(2).nodes(1).nodes.size shouldBe 0
-    mappedNodes(3).nodes.size shouldBe 1
-    mappedNodes(3).nodes.head.nodes.size shouldBe 0
+    mappedNodes should have size 4
+    mappedNodes.head.nodes should have size 3
+    mappedNodes.head.nodes.head.nodes should have size 0
+    mappedNodes.head.nodes(1).nodes should have size 2
+    mappedNodes.head.nodes(2).nodes should have size 0
+    mappedNodes(1).nodes should have size 3
+    mappedNodes(2).nodes should have size 2
+    mappedNodes(2).nodes.head.nodes should have size 2
+    mappedNodes(2).nodes(1).nodes should have size 0
+    mappedNodes(3).nodes should have size 1
+    mappedNodes(3).nodes.head.nodes should have size 0
   }
 
 }

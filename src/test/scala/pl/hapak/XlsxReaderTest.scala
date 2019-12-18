@@ -15,7 +15,7 @@ class XlsxReaderTest extends FlatSpec with Matchers {
 
     val cellDetails = xlsxReader.readCellDetails(path)
 
-    cellDetails.size shouldBe 12
+    cellDetails should have size 12
   }
 
   "xlsxReader" should "read cell details and skip header 2" in {
@@ -24,7 +24,7 @@ class XlsxReaderTest extends FlatSpec with Matchers {
 
     val cellDetails = xlsxReader.readCellDetails(path)
 
-    cellDetails.size shouldBe 17
+    cellDetails should have size 17
   }
 
 }

@@ -16,13 +16,13 @@ class NodesITest extends FlatSpec with Matchers {
     val cellDetails = xlsxReader.readCellDetails(path)
     val mappedNodes = nodeMapper.mapNodes(cellDetails)
 
-    mappedNodes.size shouldBe 4
-    mappedNodes.head.nodes.size shouldBe 2
-    mappedNodes.head.nodes.head.nodes.size shouldBe 2
-    mappedNodes.head.nodes(1).nodes.size shouldBe 0
-    mappedNodes(1).nodes.size shouldBe 0
-    mappedNodes(2).nodes.size shouldBe 1
-    mappedNodes(2).nodes.head.nodes.size shouldBe 2
-    mappedNodes(3).nodes.size shouldBe 1
+    mappedNodes should have size 4
+    mappedNodes.head.nodes should have size 2
+    mappedNodes.head.nodes.head.nodes should have size 2
+    mappedNodes.head.nodes(1).nodes should have size 0
+    mappedNodes(1).nodes should have size 0
+    mappedNodes(2).nodes should have size 1
+    mappedNodes(2).nodes.head.nodes should have size 2
+    mappedNodes(3).nodes should have size 1
   }
 }
