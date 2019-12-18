@@ -4,24 +4,42 @@ class NodeMapper {
 
   def mapNodes(nodes: List[NodeDetails]): List[Node] = {
 
-    val nodesFromRootLevel = findNodesFromLevel(nodes, 0)
+    val nodesFromRootLevel = findNodesFromLevel0(nodes)
     assignChildren(nodesFromRootLevel, nodes, 0)
   }
 
-  // todo zamienic resztę na private jak już będzie można zostawic tylko testy do mapNodes
-  def findNodesFromLevel(nodes: List[NodeDetails], level: Int): List[NodeDetails] = nodes.filter(node => node.level == level)
+  private def findNodesFromLevel0(nodes: List[NodeDetails]): List[NodeDetails] = nodes.filter(node => node.level == 0)
 
-  def findNodeDescendants(parent: NodeDetails, allNodes: List[NodeDetails]): List[NodeDetails] = {
+  private def findNodeDescendants(parent: NodeDetails, allNodes: List[NodeDetails]): List[NodeDetails] = {
 
-    val maybeNextParent = allNodes.find(node => node.node.id > parent.node.id && node.level == parent.level)
+    val maybeNextParent = allNodes.find(node => isBelow(parent, node) && isAtSameLevel(parent, node))
+
     if (maybeNextParent.isEmpty) {
-      return allNodes.filter(node => node.node.id > parent.node.id)
+      return allNodes.filter(node => isBelow(parent, node))
     }
-    val idOfNextNodeAtSameLevel = maybeNextParent.get.node.id
-    allNodes.filter(node => node.level > parent.level && node.node.id < idOfNextNodeAtSameLevel && node.node.id > parent.node.id)
+
+    allNodes.filter(node => isAtHigherLevel(parent, node)
+      && isAbove(maybeNextParent.get, node)
+      && isBelow(parent, node))
   }
 
-  def findChildren(parent: NodeDetails, nodes: List[NodeDetails]): List[NodeDetails] = {
+  private def isAtSameLevel(parent: NodeDetails, node: NodeDetails) = {
+    node.level == parent.level
+  }
+
+  private def isBelow(thatNode: NodeDetails, thisNode: NodeDetails) = {
+    thisNode.node.id > thatNode.node.id
+  }
+
+  private def isAbove(thatNode: NodeDetails, thisNode: NodeDetails) = {
+    thisNode.node.id < thatNode.node.id
+  }
+
+  private def isAtHigherLevel(thatNode: NodeDetails, thisNode: NodeDetails) = {
+    thisNode.level > thatNode.level
+  }
+
+  private def findChildren(parent: NodeDetails, nodes: List[NodeDetails]): List[NodeDetails] = {
     val descendants = findNodeDescendants(parent, nodes)
     descendants.filter(node => node.level == parent.level + 1)
   }

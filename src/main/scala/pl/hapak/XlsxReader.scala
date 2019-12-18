@@ -1,16 +1,18 @@
 package pl.hapak
 
-import java.nio.file.Path
+import java.nio.file.{Files, Path}
 
 import org.apache.poi.ss.usermodel.{Cell, CellType, Row, WorkbookFactory}
 
 import scala.jdk.CollectionConverters._
 
-case class NodeDetails(node: Node, level: Int)
-
 class XlsxReader {
 
   def readCellDetails(path: Path): List[NodeDetails] = {
+
+    if (Files.notExists(path)) {
+      throw new RuntimeException(path + " does not exist!")
+    }
 
     val rows = readRows(path)
     val nodeRows = rows.filter(row => isNotAHeader(row))
@@ -22,7 +24,7 @@ class XlsxReader {
 
   private def getCellsAndTheirLevels(nodeRows: List[Row]) = {
     val cellsAndLevels = nodeRows.map(row => row.cellIterator().asScala.toList.zipWithIndex.find {
-      case (cell, _) => cell.getCellType == CellType.STRING
+      case (cell, _) => cell.getCellType == CellType.STRING && cell.getStringCellValue.nonEmpty
     }.get)
     cellsAndLevels
   }
@@ -32,5 +34,13 @@ class XlsxReader {
     workbook.getSheetAt(0).iterator().asScala.toList
   }
 
-  private def isNotAHeader(row: Row): Boolean = !row.getCell(0).getStringCellValue.equals("Poziom 1")
+  private def isNotAHeader(row: Row): Boolean = {
+    val cell = row.getCell(0)
+
+    val value = cell match {
+      case null => ""
+      case cell => cell.getStringCellValue
+    }
+    !value.equals("Poziom 1")
+  }
 }
