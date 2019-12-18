@@ -26,9 +26,13 @@ class XlsxReader {
 
   private def getCellsAndTheirLevels(nodeRows: List[Row]) = {
     val cellsAndLevels = nodeRows.map(row => row.cellIterator().asScala.toList.zipWithIndex.find {
-      case (cell, _) => cell.getCellType == CellType.STRING && cell.getStringCellValue.nonEmpty
+      case (cell, _) => isNotEmptyStringCell(cell)
     }.get)
     cellsAndLevels
+  }
+
+  private def isNotEmptyStringCell(cell: Cell) = {
+    cell.getCellType == CellType.STRING && cell.getStringCellValue.nonEmpty
   }
 
   private def readRows(path: Path): List[Row] = {

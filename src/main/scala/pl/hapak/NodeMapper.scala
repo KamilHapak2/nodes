@@ -34,12 +34,9 @@ class NodeMapper {
       && isBelow(parent, node))
   }
 
-
   private def isAtSameLevel(parent: NodeDetails, node: NodeDetails) = node.level == parent.level
 
   private def isBelow(thatNode: NodeDetails, thisNode: NodeDetails) = thisNode.node.id > thatNode.node.id
 
   private def isAtHigherLevel(thatNode: NodeDetails, thisNode: NodeDetails) = thisNode.level > thatNode.level
-
-
 }

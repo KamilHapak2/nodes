@@ -2,7 +2,6 @@ package pl.hapak
 
 import org.scalatest.{FlatSpec, Matchers}
 
-// todo parametrized test
 class NodeMapperTest extends FlatSpec with Matchers {
 
   private val nodeMapper: NodeMapper = new NodeMapper
@@ -72,5 +71,4 @@ class NodeMapperTest extends FlatSpec with Matchers {
     mappedNodes(3).nodes should have size 1
     mappedNodes(3).nodes.head.nodes should have size 0
   }
-
 }
