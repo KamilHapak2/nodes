@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Nodes tree</title>
+    <style>
+	html { margin:0; padding:0; font-size:62.5%; }
+	body { max-width:800px; min-width:300px; margin:0 auto; padding:20px 10px; font-size:14px; font-size:1.4em; }
+	h1 { font-size:1.8em; }
+	.demo { overflow:auto; border:1px solid silver; min-height:100px; }
+
+    </style>
+    <link rel="stylesheet" href="./theme/style.min.css"/>
+</head>
+<body>
+
+<h1>Nodes</h1>
+<div id="data" class="demo"></div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="./jstree.min.js"></script>
+
+<script>
+	// inline data demo
+	$('#data').jstree({
+		'core' : {
+			'data' : [
+                        {
+                            "id":1,
+                            "text":"A",
+                            "children":[
+                              {
+                                "id":2,
+                                "text":"AA",
+                                "children":[
+                                  {
+                                    "id":3,
+                                    "text":"AA1",
+                                    "children":[]
+                                  },
+                                  {
+                                    "id":4,
+                                    "text":"AA2",
+                                    "children":[]
+                                  }
+                                ]
+                              },
+                              {
+                                "id":5,
+                                "text":"AB",
+                                "children":[]
+                              }
+                            ]
+                          },
+                          {
+                            "id":6,
+                            "text":"B",
+                            "children":[]
+                          },
+                          {
+                            "id":7,
+                            "text":"C",
+                            "children":[
+                              {
+                                "id":8,
+                                "text":"CA",
+                                "children":[
+                                  {
+                                    "id":9,
+                                    "text":"CA1",
+                                    "children":[]
+                                  },
+                                  {
+                                    "id":10,
+                                    "text":"CA2",
+                                    "children":[]
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "id":11,
+                            "text":"D",
+                            "children":[
+                              {
+                                "id":12,
+                                "text":"DA",
+                                "children":[]
+                              }
+                            ]
+                          }
+                        ]
+		}
+	});
+
+</script>
+</body>
+</html>
