@@ -12,7 +12,7 @@ class NodeMapper {
 
   private def assignChildren(parents: List[NodeDetails], allNodes: List[NodeDetails], lv: Int): List[Node] = {
     parents
-      .map(parent => Node(parent.node.id, parent.node.name,
+      .map(parent => Node(parent.node.id, parent.node.text,
         assignChildren(findChildren(parent, allNodes), allNodes, lv + 1)))
   }
 
